@@ -505,12 +505,15 @@ Method 2:
 > [!NOTE]
 > Recommended extensions are listed in [`.vscode/extensions.json`](../.vscode/extensions.json).
 
-1. [Filter the extensions](#filter-the-extensions).
-2. Click `Recommended` in the menu.
-3. Click `WORKSPACE RECOMMENDATIONS` to uncollapse this view.
-4. Click the icon `Install Workspace Recommended extensions`.
+1. [Open in `VS Code` the directory](#open-the-directory) that contains `.vscode/extensions.json`.
+2. [Filter the `VS Code` extensions](#filter-the-vs-code-extensions).
+3. Click `Recommended` in the menu.
+4. Click `WORKSPACE RECOMMENDATIONS` to uncollapse this view.
+5. Click the icon `Install Workspace Recommended extensions`.
 
    <img alt="Install Workspace Recommended Extensions" src="./images/vs-code/extensions-install-workspace-recommended.png" style="width:400px"></img>
+
+**Tip:** (`Windows` only) If you want these extensions to be available when you open `VS Code` not in `WSL`, complete these steps again without first opening the directory in `WSL` .
 
 ## Keyboard shortcuts
 
