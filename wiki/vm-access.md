@@ -394,8 +394,8 @@ Complete these steps:
 > [!NOTE]
 > Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
 
-1. [Open the file](./vs-code.md#open-the-file):
-   `~/.ssh/config`
+1. [Open the file](./vs-code.md#open-the-file-or-the-directory-using-code):
+   `~/.ssh/config`.
 
 2. Find the `se-toolkit-vm` entry.
 
