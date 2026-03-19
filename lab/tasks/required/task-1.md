@@ -92,4 +92,4 @@ You should see a welcome message printed to the terminal. If it prints something
 
 ## Agent instructions
 
-> Ask: "Do you know what 'testable handler architecture' means?" The student likely doesn't — explain concisely: a handler is a function that takes input and returns a response. If it depends on Telegram, you can't test it without a running bot. As a plain function, you can call it from `--test` mode, from unit tests, or from Telegram — same logic, different entry points. Think of it like a web handler that works without a running HTTP server.
+> The student likely doesn't know what "testable handler architecture" means — explain it before scaffolding: a handler is a function that takes input and returns a response. If it depends on Telegram, you can't test it without a running bot. As a plain function, you can call it from `--test` mode, from unit tests, or from Telegram — same logic, different entry points. Make the decision on project structure yourself, explain why, scaffold it, then ask: "Does this make sense? Would you change anything?"
