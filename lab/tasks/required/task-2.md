@@ -63,6 +63,18 @@ Traceback (most recent call last):
 httpx.ConnectError: [Errno 111] Connection refused
 ```
 
+## Before you start
+
+Verify your backend is running and has data:
+
+```terminal
+curl -s http://localhost:42002/items/ -H "Authorization: Bearer YOUR_LMS_API_KEY" | head -c 200
+```
+
+If this returns `[]` or an error, your bot's data commands will return empty results — that's a data problem, not a code problem. Fix it:
+- Backend not running → `cd ~/se-toolkit-lab-7 && docker compose --env-file .env.docker.secret up -d`
+- Empty data → re-run ETL sync: `curl -X POST http://localhost:42002/pipeline/sync -H "Authorization: Bearer YOUR_LMS_API_KEY" -H "Content-Type: application/json" -d '{}'`
+
 ## Backend endpoints
 
 All on `localhost:42002`, require `Authorization: Bearer YOUR_LMS_API_KEY`:
