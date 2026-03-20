@@ -109,7 +109,7 @@ Before testing, fill in the LLM fields in `.env.bot.secret` on your VM:
 nano ~/se-toolkit-lab-7/.env.bot.secret
 ```
 
-Set `LLM_API_KEY`, `LLM_API_BASE`, and `LLM_MODEL` (see setup step 1.9 for values).
+Set `LLM_API_KEY`, `LLM_API_BASE_URL`, and `LLM_API_MODEL` (see setup step 1.9 for values).
 
 Then try these:
 

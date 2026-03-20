@@ -391,8 +391,8 @@ If you prefer [OpenRouter](https://openrouter.ai), register and get an API key. 
 
 ```text
 OPENROUTER_API_KEY=your-openrouter-key
-LLM_API_BASE=https://openrouter.ai/api/v1
-LLM_MODEL=meta-llama/llama-3.3-70b-instruct:free
+LLM_API_BASE_URL=https://openrouter.ai/api/v1
+LLM_API_MODEL=meta-llama/llama-3.3-70b-instruct:free
 ```
 
 </details>
