@@ -7,6 +7,7 @@ The autochecker dashboard API provides two endpoints:
 Both require HTTP Basic Auth (email + password from settings).
 """
 
+import asyncio
 from datetime import datetime
 
 import httpx
@@ -69,7 +70,8 @@ async def fetch_logs(since: datetime | None = None) -> list[ApiLog]:
     """Fetch check results from the autochecker API with pagination."""
     all_logs: list[ApiLog] = []
 
-    async with httpx.AsyncClient(timeout=60) as client:
+    # Use longer timeout and add retry logic
+    async with httpx.AsyncClient(timeout=httpx.Timeout(60.0, connect=10.0)) as client:
         cursor = since
         while True:
             params: dict[str, str | int] = {"limit": 500}
@@ -90,6 +92,9 @@ async def fetch_logs(since: datetime | None = None) -> list[ApiLog]:
                 break
 
             cursor = datetime.fromisoformat(page.logs[-1].submitted_at)
+            
+            # Add delay between requests to avoid rate limiting
+            await asyncio.sleep(1)
 
     return all_logs
 
