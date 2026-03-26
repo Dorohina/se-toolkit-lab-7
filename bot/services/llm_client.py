@@ -253,18 +253,29 @@ class LLMClient:
             Tool result as JSON string.
         """
         # Import config here to avoid circular imports
+        # Use explicit path to config module
         import sys
         from pathlib import Path
         
         # Add bot directory to path
         bot_dir = Path(__file__).parent.parent
-        sys.path.insert(0, str(bot_dir))
+        if str(bot_dir) not in sys.path:
+            sys.path.insert(0, str(bot_dir))
         
-        from config import load_config
+        try:
+            from config import load_config
+        except ImportError:
+            return f"Error: cannot load config. sys.path={sys.path[:3]}"
         
         config = load_config()
         base_url = config.get("lms_api_base_url", "")
         api_key = config.get("lms_api_key", "")
+        
+        if not base_url:
+            return f"Error: LMS_API_BASE_URL is not configured"
+        if not api_key:
+            return f"Error: LMS_API_KEY is not configured"
+        
         headers = {"Authorization": f"Bearer {api_key}"}
         
         try:
