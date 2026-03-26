@@ -1,7 +1,13 @@
 """Handler for /scores command."""
 
 import httpx
-from ...config import load_config
+import sys
+from pathlib import Path
+
+# Add bot directory to path for imports
+bot_dir = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(bot_dir))
+from config import load_config
 
 
 def handle_scores(lab: str | None = None) -> str:
