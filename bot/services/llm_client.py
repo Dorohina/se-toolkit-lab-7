@@ -264,12 +264,16 @@ class LLMClient:
         
         try:
             from config import load_config
-        except ImportError:
-            return f"Error: cannot load config. sys.path={sys.path[:3]}"
+        except ImportError as e:
+            print(f"[debug] ImportError: {e}", file=sys.stderr)
+            print(f"[debug] sys.path: {sys.path[:5]}", file=sys.stderr)
+            return f"Error: cannot load config. Check bot logs."
         
         config = load_config()
         base_url = config.get("lms_api_base_url", "")
         api_key = config.get("lms_api_key", "")
+        
+        print(f"[debug] base_url={base_url!r}, api_key={api_key[:10] if api_key else 'EMPTY'}", file=sys.stderr)
         
         if not base_url:
             return f"Error: LMS_API_BASE_URL is not configured"
