@@ -1,7 +1,13 @@
 """Handler for /labs command."""
 
 import httpx
-from ...config import load_config
+import sys
+from pathlib import Path
+
+# Add bot directory to path for imports
+bot_dir = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(bot_dir))
+from config import load_config
 
 
 def handle_labs() -> str:
@@ -25,22 +31,15 @@ def handle_labs() -> str:
             response.raise_for_status()
             items = response.json()
         
-        # Group items by lab
-        labs = {}
-        for item in items:
-            lab_id = item.get("lab_id", "unknown")
-            lab_name = item.get("lab_name", "Unknown Lab")
-            task_name = item.get("task_name", "")
-            
-            if lab_id not in labs:
-                labs[lab_id] = {"name": lab_name, "tasks": []}
-            if task_name:
-                labs[lab_id]["tasks"].append(task_name)
-        
-        # Format output
+        # Filter and format labs
         lines = ["Available labs:"]
-        for lab_id, lab_info in sorted(labs.items()):
-            lines.append(f"- {lab_id} — {lab_info['name']}")
+        for item in items:
+            if item.get("type") == "lab":
+                title = item.get("title", "Unknown Lab")
+                lines.append(f"- {title}")
+        
+        if len(lines) == 1:
+            return "No labs found."
         
         return "\n".join(lines)
         
