@@ -45,14 +45,14 @@ def handle_scores(lab: str | None = None) -> str:
         if isinstance(data, list):
             for item in data:
                 task_name = item.get("task_name", item.get("task", "Unknown"))
-                pass_rate = item.get("pass_rate", item.get("passRate", 0))
+                pass_rate = item.get("pass_rate", item.get("passRate", item.get("avg_score", 0)))
                 attempts = item.get("attempts", 0)
                 lines.append(f"- {task_name}: {pass_rate:.1f}% ({attempts} attempts)")
         elif isinstance(data, dict):
             tasks = data.get("tasks", data.get("pass_rates", []))
             for task in tasks:
                 task_name = task.get("task_name", task.get("task", "Unknown"))
-                pass_rate = task.get("pass_rate", task.get("passRate", 0))
+                pass_rate = task.get("pass_rate", task.get("passRate", task.get("avg_score", 0)))
                 attempts = task.get("attempts", 0)
                 lines.append(f"- {task_name}: {pass_rate:.1f}% ({attempts} attempts)")
         
